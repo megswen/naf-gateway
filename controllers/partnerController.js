@@ -14,8 +14,12 @@ const searchPartnerById = async(partnerId, nafToken) => {
             }
         });
 
-        // console.log(partnerResponse);
-        return partnerResponse;
+        console.log(partnerResponse);
+        if(partnerResponse) {
+            return true;
+        } else {
+            return false;
+        }
     } catch(error) {
         console.log(error);
         return new Error(error.stack);
