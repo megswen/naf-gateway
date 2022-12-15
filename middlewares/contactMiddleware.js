@@ -9,6 +9,7 @@ const contactChangeHandlingMiddleware = async(req, res, next) => {
         req.body.contactId = contactId // Store the contactId to the request body for retrieval in other functionality
         let normalized = contactToPartnerNormalizer(_change); // Normalize change record to be sent to NAF Link Partners
         req.body.hsRecord = normalized; // Add normalized Partner data to req.body
+        return next() // And let's go see if there's an existing record so we know whether to create or update
     }catch(error) {
         let err = error
         return next(err)
