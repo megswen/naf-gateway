@@ -6,7 +6,7 @@ const contactToPartnerNormalizer = (data) => {
     let company = {}
     let mailAddress = {}
     let companyAddress = {}
-    let licenses = {}
+    let licenses; // TODO: Need to figure this out. This should probably be a custom object
 
     propertyNames.forEach(name => {
         switch(name) {
@@ -80,9 +80,16 @@ const contactToPartnerNormalizer = (data) => {
             case 'zip':
                 companyAddress.zipCode = data[name];
                 break;
-            // Need to figure out licenses
         }
     })
+
+    partner.profile = profile
+    partner.contactInfo = contactInfo
+    partner.company = company
+    partner.mailAddress = mailAddress
+    partner.companyAddress = companyAddress
+
+    return partner
 }
 
 module.exports = contactToPartnerNormalizer
