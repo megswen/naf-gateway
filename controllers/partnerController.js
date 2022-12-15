@@ -26,6 +26,29 @@ const searchPartnerById = async(partnerId, nafToken) => {
     }
 }
 
+const updatePartner = async(partnerData, nafToken) => {
+    try {
+        const partnerId = partnerData.partnerId;
+
+        let partnerResponse = await axios({
+            method: 'PATCH',
+            url: `${process.env.NAF_BASE_URL}/partner/partners/${partnerId}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': nafToken
+            },
+            data: partnerData
+        });
+
+        console.log(partnerResponse);
+        return partnerResponse;
+    } catch(error) {
+        return new Error(error.stack);
+    }
+}
+
 module.exports = {
-    searchPartnerById
+    searchPartnerById,
+    updatePartner
 }

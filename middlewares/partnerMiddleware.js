@@ -1,6 +1,6 @@
 var dotenv = require('dotenv');
 dotenv.config();
-const { searchPartnerById } = require('../controllers/partnerController');
+const { searchPartnerById, updatePartner } = require('../controllers/partnerController');
 
 const checkIfPartnerExistsMiddleware = async(req, res, next) => {
     try {
@@ -20,6 +20,19 @@ const checkIfPartnerExistsMiddleware = async(req, res, next) => {
     }
 }
 
+const updatePartnerMiddleware = async(req, res, next) => {
+    try {
+        const normalizedPartner = req.body.normalized;
+
+        let update = await updatePartner(normalizedPartner, process.env.NAF_ACCESS_TOKEN);
+        console.log("Partner updated");
+        return next();
+    } catch(error) {
+        return new Error(error.stack);
+    }
+}
+
 module.exports = {
-    checkIfPartnerExistsMiddleware
+    checkIfPartnerExistsMiddleware,
+    updatePartnerMiddleware
 }
