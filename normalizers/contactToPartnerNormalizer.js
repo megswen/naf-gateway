@@ -1,37 +1,38 @@
 const contactToPartnerNormalizer = (data) => {
+    // How do I set up a record to fit into the update and post api endpoints?
     const propertyNames = Object.keys(data);
-    let partner = {}
-    let profile = {}
-    let contactInfo = {}
-    let company = {}
-    let mailAddress = {}
-    let companyAddress = {}
-    let licenses; // TODO: Need to figure this out. This should probably be a custom object
+    let partner = {};
+    let profile = {};
+    let contactInfo = {};
+    let company = {};
+    let mailAddress = {};
+    let companyAddress = {};
+    //let licenses = []; // TODO: Need to figure this out. This should probably be a custom object
 
     propertyNames.forEach(name => {
-        switch(name) {
+        switch (name) {
             case 'firstname':
                 profile.firstName = data[name];
                 break;
             case 'lastname':
                 profile.lastName = data[name];
                 break;
-            case '': // Nickname - TODO: fill HubSpot internal name for nickname field
+            case 'preferredname':
                 profile.aka = data[name];
                 break;
             case 'jobtitle':
                 profile.jobTitle = data[name];
                 break;
-            case '': // NAF Connect - TODO: fill HubSpot internal name for NAF Connect
+            case 'nafconnect':
                 profile.isNAFConnect = data[name];
                 break;
-            case '': // License - TODO: fill HubSpot internal name for License
+            case 'license':
                 profile.license = data[name];
                 break;
             case 'phone':
                 contactInfo.officePhone = data[name];
                 break;
-            case '': // Home Phone - TODO: fill HubSpot internal name for Home Phone
+            case 'homephone':
                 contactInfo.homePhone = data[name];
                 break;
             case 'fax':
@@ -43,7 +44,7 @@ const contactToPartnerNormalizer = (data) => {
             case '': // Home email - TODO: fill HubSpot internal name for Home email
                 contactInfo.homeEmail = data[name];
                 break;
-            case '': // birthday - TODO: fill HubSpot internal name for birthday
+            case 'date_of_birth': // birthday - TODO: fill HubSpot internal name for birthday
                 contactInfo.birthday = data[name];
                 break;
             case 'company':
@@ -68,7 +69,7 @@ const contactToPartnerNormalizer = (data) => {
             case 'address':
                 companyAddress.line1 = data[name];
                 break;
-            case '': // Street Address 2 - TODO: fill HubSpot internal nme for Street Address 2 
+            case 'address2': // Street Address 2 - TODO: fill HubSpot internal nme for Street Address 2 
                 companyAddress.line2 = data[name];
                 break;
             case 'city':
@@ -80,16 +81,32 @@ const contactToPartnerNormalizer = (data) => {
             case 'zip':
                 companyAddress.zipCode = data[name];
                 break;
-        }
-    })
+            case 'naflink_partnerId':
+                partner.partnerId = data[name];
+                break;
+            case 'hs_lead_status':
+                partner.leadStatusTypeId = data[name];
+                break;
+            case 'loanlikelihood':
+                partner.loanLikelihood = data[name];
+                break;
+            case 'purchasestatus':
+                partner.purchaseStatus = data[name];
+                break;
+            default:
+                break;
+                // Need to figure out licenses
+        };
+    });
 
-    partner.profile = profile
-    partner.contactInfo = contactInfo
-    partner.company = company
-    partner.mailAddress = mailAddress
-    partner.companyAddress = companyAddress
 
-    return partner
-}
+    partner.profile = profile;
+    partner.contactInfo = contactInfo;
+    partner.company = company;
+    partner.mailAddress = mailAddress;
+    partner.companyAddress = companyAddress;
 
-module.exports = contactToPartnerNormalizer
+    return partner;
+};
+
+module.exports = contactToPartnerNormalizer;
