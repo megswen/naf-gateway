@@ -7,7 +7,7 @@ const contactToPartnerNormalizer = (data) => {
     let company = {};
     let mailAddress = {};
     let companyAddress = {};
-    //let licenses = []; // TODO: Need to figure this out. This should probably be a custom object
+    //let licenses = []; // TODO: Need to figure this out. This will be a custom object
 
     propertyNames.forEach(name => {
         switch (name) {
