@@ -7,7 +7,7 @@ const contactToPartnerNormalizer = (data) => {
     let company = {};
     let mailAddress = {};
     let companyAddress = {};
-    //let licenses = []; // TODO: Need to figure this out. This will be a custom object
+    let secondaryEmails = []
 
     propertyNames.forEach(name => {
         switch (name) {
@@ -51,19 +51,19 @@ const contactToPartnerNormalizer = (data) => {
                 company.name = data[name];
                 company.displayName = data[name]
                 break;
-            case '': // Mailing Street Address - TODO: fill HubSpot internal nme for Mailing Street Address 
+            case 'mailing_street_address': // Mailing Street Address - TODO: fill HubSpot internal nme for Mailing Street Address 
                 mailAddress.line1 = data[name];
                 break;
-            case '': // Mailing Street Address 2 - TODO: fill HubSpot internal nme for Mailing Street Address 2 
+            case 'mailing_street_address_2': // Mailing Street Address 2 - TODO: fill HubSpot internal nme for Mailing Street Address 2 
                 mailAddress.line2 = data[name];
                 break;
-            case '': // Mailing City - TODO: fill HubSpot internal name for Mailing City
+            case 'mailing_city': // Mailing City - TODO: fill HubSpot internal name for Mailing City
                 mailAddress.city = data[name];
                 break;
-            case '': // Mailing State/Region - TODO: fill HubSpot internal name for Mailing State/Region
+            case 'mailing_state_region': // Mailing State/Region - TODO: fill HubSpot internal name for Mailing State/Region
                 mailAddress.state = data[name]
                 break;
-            case '': // Mailing Postal Code - TODO: fill HubSpot internal name for Mailing Postal Code
+            case 'mailing_postal_code': // Mailing Postal Code - TODO: fill HubSpot internal name for Mailing Postal Code
                 mailAddress.zip = data[name]
                 break;
             case 'address':
