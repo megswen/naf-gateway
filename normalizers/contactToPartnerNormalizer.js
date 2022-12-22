@@ -40,7 +40,7 @@ const contactToPartnerNormalizer = (data) => {
             case 'email':
                 contactInfo.workEmail = data[name];
                 break;
-            case '': // Home email - TODO: fill HubSpot internal name for Home email, might map to secondary emails but I'm pushing back on this
+            case 'home_email':
                 contactInfo.homeEmail = data[name];
                 break;
             case 'date_of_birth':
