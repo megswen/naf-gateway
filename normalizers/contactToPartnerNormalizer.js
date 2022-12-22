@@ -7,7 +7,6 @@ const contactToPartnerNormalizer = (data) => {
     let company = {};
     let mailAddress = {};
     let companyAddress = {};
-    let secondaryEmails = []
 
     propertyNames.forEach(name => {
         switch (name) {
@@ -41,35 +40,37 @@ const contactToPartnerNormalizer = (data) => {
             case 'email':
                 contactInfo.workEmail = data[name];
                 break;
-            case '': // Home email - TODO: fill HubSpot internal name for Home email
+            case '': // Home email - TODO: fill HubSpot internal name for Home email, might map to secondary emails but I'm pushing back on this
                 contactInfo.homeEmail = data[name];
                 break;
-            case 'date_of_birth': // birthday - TODO: fill HubSpot internal name for birthday
+            case 'date_of_birth':
                 contactInfo.birthday = data[name];
                 break;
             case 'company':
                 company.name = data[name];
-                company.displayName = data[name]
                 break;
-            case 'mailing_street_address': // Mailing Street Address - TODO: fill HubSpot internal nme for Mailing Street Address 
+            case 'doingbusinessas':
+                company.displayName = data[name];
+                break;
+            case 'mailing_street_address':
                 mailAddress.line1 = data[name];
                 break;
-            case 'mailing_street_address_2': // Mailing Street Address 2 - TODO: fill HubSpot internal nme for Mailing Street Address 2 
+            case 'mailing_street_address_2':
                 mailAddress.line2 = data[name];
                 break;
-            case 'mailing_city': // Mailing City - TODO: fill HubSpot internal name for Mailing City
+            case 'mailing_city':
                 mailAddress.city = data[name];
                 break;
-            case 'mailing_state_region': // Mailing State/Region - TODO: fill HubSpot internal name for Mailing State/Region
+            case 'mailing_state_region':
                 mailAddress.state = data[name]
                 break;
-            case 'mailing_postal_code': // Mailing Postal Code - TODO: fill HubSpot internal name for Mailing Postal Code
-                mailAddress.zip = data[name]
+            case 'mailing_postal_code':
+                mailAddress.zipCode = data[name]
                 break;
             case 'address':
                 companyAddress.line1 = data[name];
                 break;
-            case 'address2': // Street Address 2 - TODO: fill HubSpot internal nme for Street Address 2 
+            case 'address2':
                 companyAddress.line2 = data[name];
                 break;
             case 'city':
@@ -84,18 +85,8 @@ const contactToPartnerNormalizer = (data) => {
             case 'naflink_partnerId':
                 partner.partnerId = data[name];
                 break;
-            case 'hs_lead_status':
-                partner.leadStatusTypeId = data[name];
-                break;
-            case 'loanlikelihood':
-                partner.loanLikelihood = data[name];
-                break;
-            case 'purchasestatus':
-                partner.purchaseStatus = data[name];
-                break;
             default:
                 break;
-                // Need to figure out licenses
         };
     });
 
