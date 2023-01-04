@@ -14,6 +14,10 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// TEST ROUTE
+const { setHSContactPartnerIdMiddleware } = require('./middlewares/contactMiddleware');
+app.use('/middleware-test', setHSContactPartnerIdMiddleware);
+
 app.listen(port, async() => {
     try {
         console.log('Listening on port #' + port);

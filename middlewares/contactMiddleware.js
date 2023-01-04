@@ -3,7 +3,7 @@ const { setHSContactPartnerId } = require('../controllers/contactController')
 const setHSContactPartnerIdMiddleware = async(req, res, next) => {
     try {
         const partnerId = req.body.partnerId; // Or whatever it's called
-        const contactId = req.body.change.hs_object_id; // ????
+        const contactId = req.body.contactId;
         await setHSContactPartnerId(partnerId, contactId);
 
         return res.sendStatus(200);
