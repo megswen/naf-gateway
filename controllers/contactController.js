@@ -14,12 +14,13 @@ const setHSContactPartnerId = async(partnerId, contactId) => {
             headers: {
                 'Authorization': `Bearer ${process.env.HS_ACCESS_TOKEN}`, // Authenticating with access token from private app
                 'Content-Type': 'application/json',
-                'accept': 'application/json'
+                'accept': 'application/json',
+                "Accept-Encoding": "gzip,deflate,compress" // This is because axios was throwing an "unexpected end of file" error adn this fixed it
             },
             data: { properties }
         });
 
-        console.log(hubspotResponse);
+        return hubspotResponse;
     } catch(error) {
         console.log(error);
     }
