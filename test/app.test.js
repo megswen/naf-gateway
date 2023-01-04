@@ -6,8 +6,8 @@ const expect = chai.expect;
 const app = require('../index');
 const { setHSContactPartnerId } = require('../controllers/contactController');
 
-describe('Check For Existing Partner Test', () => {
-    it('Should return true or false depending on whether or not the Partner passed in exists', async() => {
+describe('Set Partner ID back to HubSpot', () => {
+    it('Should set the Partner ID of the HubSpot Contact passed in', async() => {
         let partnerId = '3013f958-4557-4d8d-a1f7-763f306a458e';
         let contactId = '6251';
         let updateHsId = await setHSContactPartnerId(partnerId, contactId);
