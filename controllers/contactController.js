@@ -12,7 +12,7 @@ const setHSContactPartnerId = async(partnerId, contactId) => {
             url: `https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`,
             method: 'PATCH',
             headers: {
-                'Authorization': `Bearer ${process.env.HS_AUTH_TOKEN}`, // Authenticating with access token from private app
+                'Authorization': `Bearer ${process.env.HS_ACCESS_TOKEN}`, // Authenticating with access token from private app
                 'Content-Type': 'application/json',
                 'accept': 'application/json'
             },
